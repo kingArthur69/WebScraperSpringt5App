@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Youtube Scrapper</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1 class="header">Scan page</h1>
+<div class="redirect">
+    <a href="index.html">Home Page</a>
+</div>
+<div class="box">
+    <form action="scanPage">
+        <label for="searchText">Search</label><br>
+        <input type="text" id="searchText" name="searchText">
+        <input type="submit" value="Submit">
+    </form>
+</div>
+</body>
+</html>

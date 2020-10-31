@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Youtube Scrapper</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1 class="header">Main page</h1>
+<div class="redirect">
+    <a href="scan.html">Scan Page</a>
+</div>
+
+<div class="box">
+    <form action="/videos">
+        <input type="submit" value="Load Videos">
+    </form>
+</div>
+
+<!--<div class="box">-->
+<!--<form action="/filteredVideos">-->
+<!--<label for="filterBy">Filtered Videos</label><br>-->
+<!--<input type="text" id="filterBy" name="filterBy">-->
+<!--<input type="submit" value="Load Filtered Videos">-->
+<!--</form>-->
+<!--</div>-->
+
+<div th:switch="${videos}" class="boxContainer">
+    <h2 th:case="null">No videos yet!</h2>
+    <div th:case="*">
+        <h2>Videos</h2>
+        <div th:each="video : ${videos}" class="box frame">
+            <p>Url: </p>
+            <p th:text="${video.url}"></p>
+            <p>Creation date: </p>
+            <p th:text="${video.creationDate}"></p>
+            <iframe class="video" th:src="${video.url}"></iframe>
+        </div>
+        <ul th:if="${videos.totalPages > 0}" class="pagination"
+            th:each="pageNumber : ${#numbers.sequence(1, videos.totalPages)}">
+            <li>
+                <a th:href="@{/videos(pageSize=${videos.size}, pageNo=${pageNumber - 1})}"
+                   th:text="${pageNumber}"
+                   th:class="${pageNumber == videos.number + 1} ? active"></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>
