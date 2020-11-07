@@ -13,7 +13,6 @@ public class Video implements ScrappedObject {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    //    private String name;
     private String url;
     private LocalDateTime creationDate;
     private String searchText;

@@ -21,7 +21,7 @@ public class WebController {
         this.videoService = videoService;
     }
 
-    @RequestMapping(value = {"/index", "/", "index.html"})
+    @RequestMapping(value = {"/index", "/", "/index.html"})
     public String index() {
         return "index";
     }
@@ -32,11 +32,10 @@ public class WebController {
     }
 
     @GetMapping("/videos")
-    public String getAllVideosByPages(
-            Model model,
-            @RequestParam(defaultValue = "0") Integer pageNo,
-            @RequestParam(defaultValue = "10") Integer pageSize,
-            @RequestParam(defaultValue = "id") String sortBy) {
+    public String getAllVideosByPages(Model model,
+                                      @RequestParam(defaultValue = "0") Integer pageNo,
+                                      @RequestParam(defaultValue = "10") Integer pageSize,
+                                      @RequestParam(defaultValue = "id") String sortBy) {
         Page<Video> videos = videoService.findAllVideosByPages(pageNo, pageSize, sortBy);
 
         if (videos.hasContent()) {
